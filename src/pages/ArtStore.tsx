@@ -5,40 +5,51 @@ import { Button } from "@/components/ui/button";
 const ArtStore = () => {
   const artworks = [
     {
-      title: "Abstract Harmony",
-      artist: "Jane Doe",
-      price: "$599",
-      description: "A vibrant abstract piece exploring color and movement",
-    },
-    {
-      title: "Urban Landscape",
-      artist: "John Smith",
+      title: "Digital Dreams",
+      artist: "Elena Rodriguez",
       price: "$799",
-      description: "Contemporary interpretation of city life",
+      description: "A stunning digital artwork exploring the intersection of technology and nature.",
+      medium: "Digital Art",
     },
     {
-      title: "Nature's Dance",
-      artist: "Maria Garcia",
-      price: "$699",
-      description: "Organic forms inspired by natural elements",
+      title: "Urban Pulse",
+      artist: "Marcus Chen",
+      price: "$1,200",
+      description: "Contemporary urban landscape capturing the energy of modern city life.",
+      medium: "Mixed Media",
+    },
+    {
+      title: "Quantum Reflections",
+      artist: "Sarah Johnson",
+      price: "$950",
+      description: "Abstract visualization of quantum mechanics principles through digital art.",
+      medium: "Digital Art",
+    },
+    {
+      title: "Tech Flora",
+      artist: "David Kim",
+      price: "$850",
+      description: "Botanical illustrations reimagined through a technological lens.",
+      medium: "Digital Print",
     },
   ];
 
   return (
     <>
       <Metadata
-        title="Art Store | Training & Consultancy Agency"
-        description="Browse and purchase unique artworks from talented artists"
+        title="Art Gallery | Power Suite Tech"
+        description="Explore our curated collection of digital and contemporary artwork from talented artists."
         schema={{
           "@context": "https://schema.org",
           "@type": "Store",
-          "name": "Art Store",
-          "description": "Browse and purchase unique artworks from talented artists",
+          "name": "Power Suite Art Gallery",
+          "description": "Curated collection of digital and contemporary artwork",
+          "@id": `${window.location.origin}/art-store`,
           "url": `${window.location.origin}/art-store`,
         }}
       />
       <div className="container mx-auto px-4 py-12">
-        <h1 className="text-4xl font-bold mb-8">Art Store</h1>
+        <h1 className="text-4xl font-bold mb-8">Art Gallery</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {artworks.map((artwork) => (
             <Card key={artwork.title} className="flex flex-col">
@@ -48,9 +59,12 @@ const ArtStore = () => {
               </CardHeader>
               <CardContent className="flex-grow">
                 <p className="mb-4">{artwork.description}</p>
-                <div className="flex justify-between items-center">
-                  <span className="text-lg font-semibold">{artwork.price}</span>
-                  <Button>Add to Cart</Button>
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm">{artwork.medium}</span>
+                    <span className="font-semibold">{artwork.price}</span>
+                  </div>
+                  <Button className="w-full">Purchase</Button>
                 </div>
               </CardContent>
             </Card>
