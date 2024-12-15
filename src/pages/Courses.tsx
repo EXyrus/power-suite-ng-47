@@ -1,8 +1,15 @@
+import { useState } from "react";
 import { Metadata } from "@/components/Metadata";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { EnrollmentModal } from "@/components/EnrollmentModal";
 
 const Courses = () => {
+  const [selectedCourse, setSelectedCourse] = useState<{
+    title: string;
+    price: string;
+  } | null>(null);
+
   const technologyCourses = [
     {
       title: "IT Support",
@@ -65,6 +72,10 @@ const Courses = () => {
     },
   ];
 
+  const handleEnrollClick = (title: string, price: string) => {
+    setSelectedCourse({ title, price });
+  };
+
   return (
     <>
       <Metadata
@@ -107,7 +118,12 @@ const Courses = () => {
                       <div className="flex justify-between items-center mb-4">
                         <span className="font-semibold">{course.price}</span>
                       </div>
-                      <Button className="w-full">Enroll Now</Button>
+                      <Button 
+                        className="w-full"
+                        onClick={() => handleEnrollClick(course.title, course.price)}
+                      >
+                        Enroll Now
+                      </Button>
                     </div>
                   </div>
                 </CardContent>
@@ -139,7 +155,12 @@ const Courses = () => {
                       <div className="flex justify-between items-center mb-4">
                         <span className="font-semibold">{course.price}</span>
                       </div>
-                      <Button className="w-full">Enroll Now</Button>
+                      <Button 
+                        className="w-full"
+                        onClick={() => handleEnrollClick(course.title, course.price)}
+                      >
+                        Enroll Now
+                      </Button>
                     </div>
                   </div>
                 </CardContent>
@@ -147,6 +168,15 @@ const Courses = () => {
             ))}
           </div>
         </section>
+
+        {selectedCourse && (
+          <EnrollmentModal
+            isOpen={!!selectedCourse}
+            onClose={() => setSelectedCourse(null)}
+            courseName={selectedCourse.title}
+            coursePrice={selectedCourse.price}
+          />
+        )}
       </div>
     </>
   );
