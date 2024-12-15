@@ -21,8 +21,8 @@ export const Footer = () => {
           </div>
           <div>
             <h3 className="text-lg font-semibold mb-4">Contact Us</h3>
-            <p className="text-sm">Email: info@powersuite.tech</p>
-            <p className="text-sm">Phone: (555) 123-4567</p>
+            <p className="text-sm">Email: info@powersuite.com.ng</p>
+            <p className="text-sm">Phone: +234 803 123 4567</p>
           </div>
         </div>
         <div className="border-t border-primary-foreground/20 mt-8 pt-8 text-center text-sm">

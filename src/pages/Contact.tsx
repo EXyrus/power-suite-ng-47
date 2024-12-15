@@ -3,9 +3,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/components/ui/use-toast";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { useEffect } from "react";
 
 const Contact = () => {
   const { toast } = useToast();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,14 +24,14 @@ const Contact = () => {
   return (
     <>
       <Metadata
-        title="Contact Us | Training & Consultancy Agency"
-        description="Get in touch with our team for inquiries and support"
+        title="Contact Power Suite Tech | Training & Consultancy Agency"
+        description="Get in touch with Power Suite Tech for inquiries and support"
         schema={{
           "@context": "https://schema.org",
           "@type": "ContactPage",
-          "name": "Contact Us",
+          "name": "Contact Power Suite Tech",
           "description": "Get in touch with our team for inquiries and support",
-          "url": `${window.location.origin}/contact`,
+          "url": "https://powersuite.com.ng/contact",
         }}
       />
       <div className="container mx-auto px-4 py-12">
@@ -43,6 +49,21 @@ const Contact = () => {
                 Email
               </label>
               <Input id="email" type="email" required />
+            </div>
+            <div>
+              <label htmlFor="subject" className="block text-sm font-medium mb-2">
+                Subject
+              </label>
+              <Select required>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select a subject" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="art">Art Inquiry</SelectItem>
+                  <SelectItem value="course">Course Info</SelectItem>
+                  <SelectItem value="other">Other</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
             <div>
               <label htmlFor="message" className="block text-sm font-medium mb-2">

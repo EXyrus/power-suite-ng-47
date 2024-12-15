@@ -20,9 +20,20 @@ const formSchema = z.object({
   email: z.string().email("Invalid email address"),
 });
 
-export const EnrollmentModal = ({ isOpen, onClose, courseName, coursePrice }: EnrollmentModalProps) => {
-  const { toast } = useToast();
+export function EnrollmentModal({
+  isOpen,
+  onClose,
+  courseName,
+  coursePrice,
+}: {
+  isOpen: boolean;
+  onClose: () => void;
+  courseName: string;
+  coursePrice: string;
+}) {
   const [isProcessing, setIsProcessing] = useState(false);
+  const { toast } = useToast();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -88,7 +99,7 @@ export const EnrollmentModal = ({ isOpen, onClose, courseName, coursePrice }: En
             />
             <div className="pt-4">
               <Button type="submit" className="w-full" disabled={isProcessing}>
-                {isProcessing ? "Processing..." : `Enroll Now (${coursePrice})`}
+                {isProcessing ? "Processing..." : `Enroll Now (₦${coursePrice})`}
               </Button>
             </div>
           </form>
@@ -96,4 +107,4 @@ export const EnrollmentModal = ({ isOpen, onClose, courseName, coursePrice }: En
       </DialogContent>
     </Dialog>
   );
-};
+}
