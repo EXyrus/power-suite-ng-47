@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { usePaystackPayment } from "react-paystack";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -32,42 +31,19 @@ export const EnrollmentModal = ({ isOpen, onClose, courseName, coursePrice }: En
     },
   });
 
-  const config = {
-    reference: new Date().getTime().toString(),
-    email: form.watch("email"),
-    amount: parseInt(coursePrice.replace(/[^0-9]/g, "")) * 100, // Convert price string to number
-    publicKey: "YOUR_PAYSTACK_PUBLIC_KEY",
-  };
-
-  const initializePayment = usePaystackPayment(config);
-
-  const onSuccess = () => {
-    // Send confirmation email
-    sendConfirmationEmail({
-      email: form.getValues("email"),
-      fullName: form.getValues("fullName"),
-      courseName,
-    });
-    
-    toast({
-      title: "Payment Successful",
-      description: "You will receive a confirmation email shortly with course details.",
-    });
-    
-    onClose();
-  };
-
-  const onError = () => {
-    toast({
-      variant: "destructive",
-      title: "Payment Failed",
-      description: "Please try again or contact support.",
-    });
-  };
-
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsProcessing(true);
-    initializePayment(onSuccess, onError);
+    
+    // Temporary simulation of payment and email process
+    setTimeout(() => {
+      toast({
+        title: "Enrollment Successful",
+        description: "This is a demo mode. In production, you would receive a confirmation email with course details.",
+      });
+      
+      setIsProcessing(false);
+      onClose();
+    }, 2000);
   };
 
   return (
@@ -77,6 +53,9 @@ export const EnrollmentModal = ({ isOpen, onClose, courseName, coursePrice }: En
           <DialogTitle>Enroll in {courseName}</DialogTitle>
           <DialogDescription>
             Please provide your details to complete the enrollment process.
+            <div className="mt-2 p-2 bg-yellow-50 text-yellow-800 rounded-md text-sm">
+              Demo Mode: Payment processing and email confirmation are temporarily disabled.
+            </div>
           </DialogDescription>
         </DialogHeader>
         <Form {...form}>
@@ -109,7 +88,7 @@ export const EnrollmentModal = ({ isOpen, onClose, courseName, coursePrice }: En
             />
             <div className="pt-4">
               <Button type="submit" className="w-full" disabled={isProcessing}>
-                {isProcessing ? "Processing..." : `Pay ${coursePrice}`}
+                {isProcessing ? "Processing..." : `Enroll Now (${coursePrice})`}
               </Button>
             </div>
           </form>
