@@ -1,23 +1,25 @@
 import { Metadata } from "@/components/Metadata";
-import { Hero } from "@/components/Hero";
-import { Features } from "@/components/Features";
+import { HeroSection } from "@/components/sections/HeroSection";
+import { FeaturesGrid } from "@/components/sections/FeaturesGrid";
+import { WorkspaceShowcase } from "@/components/sections/WorkspaceShowcase";
 
 const Home = () => {
   return (
     <>
       <Metadata
-        title="Training & Consultancy Agency"
+        title="Power Suite Tech - Training & Consultancy Agency"
         description="Expert training and consultancy services to help you grow"
         schema={{
           "@context": "https://schema.org",
           "@type": "Organization",
-          "name": "Training & Consultancy Agency",
+          "name": "Power Suite Tech",
           "description": "Expert training and consultancy services to help you grow",
-          "url": window.location.origin,
+          "url": "https://powersuite.com.ng",
         }}
       />
-      <Hero />
-      <Features />
+      <HeroSection />
+      <FeaturesGrid />
+      <WorkspaceShowcase />
     </>
   );
 };
