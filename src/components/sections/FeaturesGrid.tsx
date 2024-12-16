@@ -1,35 +1,25 @@
-import { Wifi, Coffee, Zap, Users, Building2, Clock } from "lucide-react";
+import { BookOpen, Users, Trophy, Palette } from "lucide-react";
 
 const features = [
   {
-    icon: <Wifi className="w-8 h-8" />,
-    title: "24/7hr Access",
-    description: "Work whenever inspiration strikes"
+    icon: <BookOpen className="w-8 h-8" />,
+    title: "Expert Training",
+    description: "Learn from industry professionals with years of experience"
   },
   {
     icon: <Users className="w-8 h-8" />,
-    title: "Collaborative Space",
-    description: "Connect with like-minded professionals"
+    title: "Professional Network",
+    description: "Connect with like-minded professionals and expand your network"
   },
   {
-    icon: <Zap className="w-8 h-8" />,
-    title: "High Speed Internet",
-    description: "Lightning-fast connectivity always"
+    icon: <Trophy className="w-8 h-8" />,
+    title: "Certified Programs",
+    description: "Gain recognized certifications to boost your career"
   },
   {
-    icon: <Coffee className="w-8 h-8" />,
-    title: "Full Kitchen",
-    description: "Complimentary coffee and snacks"
-  },
-  {
-    icon: <Building2 className="w-8 h-8" />,
-    title: "Meeting Rooms",
-    description: "Professional spaces for your meetings"
-  },
-  {
-    icon: <Clock className="w-8 h-8" />,
-    title: "Flexible Plans",
-    description: "Choose what works best for you"
+    icon: <Palette className="w-8 h-8" />,
+    title: "Art Gallery",
+    description: "Explore our curated collection of unique artworks"
   }
 ];
 
@@ -38,9 +28,9 @@ export const FeaturesGrid = () => {
     <div className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl font-bold text-center mb-12">
-          A Place That Helps Growth of Your Work
+          Why Choose Us
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
             <div
               key={index}

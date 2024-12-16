@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 
 export const WorkspaceShowcase = () => {
   return (
@@ -7,20 +8,22 @@ export const WorkspaceShowcase = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-3xl font-bold mb-6">
-              Space to make your greatest impact
+              Elevate Your Skills with Our Programs
             </h2>
             <p className="text-gray-600 mb-8">
-              Whether you're a solo entrepreneur or leading a team, our workspace 
-              provides the perfect environment for your success.
+              Whether you're starting your journey or advancing your career, our expert-led 
+              training programs provide the knowledge and skills you need to succeed.
             </p>
-            <Button variant="outline" size="lg">
-              See our rates
-            </Button>
+            <Link to="/courses">
+              <Button variant="outline" size="lg">
+                View Course Catalog
+              </Button>
+            </Link>
           </div>
           <div className="relative">
             <img
-              src="/placeholder.svg"
-              alt="Modern workspace"
+              src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b"
+              alt="Training session"
               className="rounded-lg shadow-lg w-full"
             />
           </div>
