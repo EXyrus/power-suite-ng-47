@@ -3,6 +3,8 @@ import { Metadata } from "@/components/Metadata";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
+import { demoJobs } from "@/data/demoJobs";
+import { useToast } from "@/components/ui/use-toast";
 
 interface Job {
   id: string;
@@ -16,28 +18,47 @@ interface Job {
   postedDate: string;
 }
 
+const AIRTABLE_API_KEY = "YOUR_AIRTABLE_API_KEY";
+const AIRTABLE_BASE_ID = "YOUR_AIRTABLE_BASE_ID";
+const AIRTABLE_TABLE_NAME = "Jobs";
+
 const Jobs = () => {
-  const { data: jobs, isLoading, error } = useQuery({
+  const { toast } = useToast();
+
+  const { data: jobs, isLoading } = useQuery({
     queryKey: ["jobs"],
     queryFn: async () => {
-      // This is a placeholder - replace with your actual Airtable API call
-      const response = await fetch("YOUR_AIRTABLE_API_ENDPOINT");
-      if (!response.ok) {
-        throw new Error("Failed to fetch jobs");
-      }
-      return response.json();
-    },
-  });
+      try {
+        const response = await fetch(
+          `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}`,
+          {
+            headers: {
+              Authorization: `Bearer ${AIRTABLE_API_KEY}`,
+            },
+          }
+        );
 
-  if (error) {
-    return (
-      <div className="container mx-auto px-4 py-12">
-        <div className="text-center text-red-500">
-          Error loading jobs. Please try again later.
-        </div>
-      </div>
-    );
-  }
+        if (!response.ok) {
+          throw new Error("Failed to fetch jobs from Airtable");
+        }
+
+        const data = await response.json();
+        return data.records.map((record: any) => ({
+          id: record.id,
+          ...record.fields,
+        }));
+      } catch (error) {
+        console.error("Error fetching from Airtable:", error);
+        toast({
+          title: "Using Demo Data",
+          description: "Could not connect to job database. Showing demo jobs instead.",
+          variant: "default",
+        });
+        return demoJobs;
+      }
+    },
+    initialData: demoJobs, // Use demo data as initial data
+  });
 
   return (
     <>
