@@ -11,6 +11,7 @@ import About from "@/pages/About";
 import Courses from "@/pages/Courses";
 import ArtStore from "@/pages/ArtStore";
 import Contact from "@/pages/Contact";
+import Jobs from "@/pages/Jobs";
 import { useEffect } from "react";
 
 const ScrollToTop = () => {
@@ -41,6 +42,7 @@ const App = () => (
               <Route path="/courses" element={<Courses />} />
               <Route path="/art-store" element={<ArtStore />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/jobs" element={<Jobs />} />
             </Routes>
           </main>
           <Footer />

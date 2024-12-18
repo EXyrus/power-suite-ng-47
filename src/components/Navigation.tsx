@@ -51,6 +51,7 @@ const NavLinks = ({ isActive }: { isActive: (path: string) => boolean }) => {
     { path: "/about", label: "About" },
     { path: "/courses", label: "Courses" },
     { path: "/art-store", label: "Art Store" },
+    { path: "/jobs", label: "Jobs" },
     { path: "/contact", label: "Contact" },
   ];
 
