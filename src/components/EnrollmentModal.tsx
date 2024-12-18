@@ -58,7 +58,7 @@ export function EnrollmentModal({
     onClose();
   };
 
-  const onClose = () => {
+  const handlePaymentCancelled = () => {
     toast({
       title: "Payment Cancelled",
       description: "You have cancelled the payment.",
@@ -79,7 +79,7 @@ export function EnrollmentModal({
     setIsProcessing(true);
     
     if (values.paymentMethod === "paystack") {
-      initializePayment(onSuccess, onClose);
+      initializePayment(onSuccess, handlePaymentCancelled);
     } else {
       await handleFlutterwavePayment();
     }
