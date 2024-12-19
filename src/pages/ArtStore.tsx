@@ -3,12 +3,13 @@ import { Metadata } from "@/components/Metadata";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { EnrollmentModal } from "@/components/EnrollmentModal";
+import { ArtPurchaseModal } from "@/components/ArtPurchaseModal";
 
 const ArtStore = () => {
   const [selectedArtwork, setSelectedArtwork] = useState<{
     title: string;
     price: string;
+    artist: string;
   } | null>(null);
 
   const artworks = [
@@ -112,11 +113,12 @@ const ArtStore = () => {
       </div>
 
       {selectedArtwork && (
-        <EnrollmentModal
+        <ArtPurchaseModal
           isOpen={!!selectedArtwork}
           onClose={() => setSelectedArtwork(null)}
-          courseName={selectedArtwork.title}
-          coursePrice={selectedArtwork.price}
+          artworkTitle={selectedArtwork.title}
+          artworkPrice={selectedArtwork.price}
+          artist={selectedArtwork.artist}
         />
       )}
     </>
