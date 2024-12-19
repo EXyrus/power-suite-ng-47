@@ -1,9 +1,16 @@
+import { useState } from "react";
 import { Metadata } from "@/components/Metadata";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
+import { EnrollmentModal } from "@/components/EnrollmentModal";
 
 const ArtStore = () => {
+  const [selectedArtwork, setSelectedArtwork] = useState<{
+    title: string;
+    price: string;
+  } | null>(null);
+
   const artworks = [
     {
       title: "Digital Dreams",
@@ -89,7 +96,10 @@ const ArtStore = () => {
                         <span className="text-sm text-gray-600">{artwork.medium}</span>
                         <span className="font-semibold text-purple-600">{artwork.price}</span>
                       </div>
-                      <Button className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white border-none shadow-lg hover:shadow-xl transition-all duration-300">
+                      <Button 
+                        className="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white border-none shadow-lg hover:shadow-xl transition-all duration-300"
+                        onClick={() => setSelectedArtwork(artwork)}
+                      >
                         Purchase
                       </Button>
                     </div>
@@ -100,6 +110,15 @@ const ArtStore = () => {
           </div>
         </div>
       </div>
+
+      {selectedArtwork && (
+        <EnrollmentModal
+          isOpen={!!selectedArtwork}
+          onClose={() => setSelectedArtwork(null)}
+          courseName={selectedArtwork.title}
+          coursePrice={selectedArtwork.price}
+        />
+      )}
     </>
   );
 };

@@ -46,20 +46,6 @@ export function EnrollmentModal({
     email: form.watch("email"),
     amount: parseInt(coursePrice.replace(/[^0-9]/g, "")) * 100, // Convert price to kobo
     publicKey: "pk_test_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", // Replace with your Paystack public key
-    onSuccess: () => {
-      toast({
-        title: "Payment Successful",
-        description: "You have successfully enrolled in the course.",
-      });
-      onClose();
-    },
-    onClose: () => {
-      toast({
-        title: "Payment Cancelled",
-        description: "You have cancelled the payment.",
-        variant: "destructive",
-      });
-    },
   };
 
   const initializePayment = usePaystackPayment(config);
@@ -77,7 +63,22 @@ export function EnrollmentModal({
     setIsProcessing(true);
     
     if (values.paymentMethod === "paystack") {
-      initializePayment();
+      initializePayment({
+        onSuccess: () => {
+          toast({
+            title: "Payment Successful",
+            description: "You have successfully enrolled in the course.",
+          });
+          onClose();
+        },
+        onClose: () => {
+          toast({
+            title: "Payment Cancelled",
+            description: "You have cancelled the payment.",
+            variant: "destructive",
+          });
+        },
+      });
     } else {
       await handleFlutterwavePayment();
     }

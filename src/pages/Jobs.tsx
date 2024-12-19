@@ -5,22 +5,8 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Badge } from "@/components/ui/badge";
 import { demoJobs } from "@/data/demoJobs";
 import { useToast } from "@/components/ui/use-toast";
-
-interface Job {
-  id: string;
-  title: string;
-  company: string;
-  location: string;
-  type: string;
-  description: string;
-  requirements: string;
-  salary: string;
-  postedDate: string;
-}
-
-const AIRTABLE_API_KEY = "YOUR_AIRTABLE_API_KEY";
-const AIRTABLE_BASE_ID = "YOUR_AIRTABLE_BASE_ID";
-const AIRTABLE_TABLE_NAME = "Jobs";
+import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 const Jobs = () => {
   const { toast } = useToast();
@@ -57,8 +43,29 @@ const Jobs = () => {
         return demoJobs;
       }
     },
-    initialData: demoJobs, // Use demo data as initial data
+    initialData: demoJobs,
   });
+
+  if (isLoading) {
+    return (
+      <div className="container mx-auto px-4 py-12">
+        <h1 className="text-4xl font-bold mb-8">Job Opportunities</h1>
+        <div className="space-y-6">
+          {[1, 2, 3].map((i) => (
+            <Card key={i}>
+              <CardHeader>
+                <Skeleton className="h-8 w-2/3" />
+                <Skeleton className="h-4 w-1/3 mt-2" />
+              </CardHeader>
+              <CardContent>
+                <Skeleton className="h-20 w-full" />
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -77,54 +84,35 @@ const Jobs = () => {
         }}
       />
       <div className="container mx-auto px-4 py-12">
-        <h1 className="text-4xl font-bold mb-8 text-center">Job Opportunities</h1>
-        
-        <div className="grid gap-6">
-          {isLoading ? (
-            // Loading skeletons
-            Array.from({ length: 3 }).map((_, index) => (
-              <Card key={index}>
-                <CardHeader>
-                  <Skeleton className="h-6 w-2/3" />
-                  <Skeleton className="h-4 w-1/3 mt-2" />
-                </CardHeader>
-                <CardContent>
-                  <Skeleton className="h-20 w-full" />
-                </CardContent>
-              </Card>
-            ))
-          ) : (
-            // Actual job listings
-            jobs?.map((job: Job) => (
-              <Card key={job.id}>
-                <CardHeader>
-                  <div className="flex justify-between items-start">
-                    <div>
-                      <CardTitle>{job.title}</CardTitle>
-                      <CardDescription>{job.company}</CardDescription>
-                    </div>
-                    <Badge>{job.type}</Badge>
+        <h1 className="text-4xl font-bold mb-8">Job Opportunities</h1>
+        <div className="space-y-6">
+          {jobs?.map((job) => (
+            <Card key={job.id}>
+              <CardHeader>
+                <div className="flex justify-between items-start">
+                  <div>
+                    <CardTitle>{job.title}</CardTitle>
+                    <CardDescription>{job.company}</CardDescription>
                   </div>
-                </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between text-sm text-muted-foreground">
-                      <span>{job.location}</span>
-                      <span>{job.salary}</span>
-                    </div>
-                    <p className="text-sm">{job.description}</p>
-                    <div>
-                      <h4 className="font-semibold mb-2">Requirements:</h4>
-                      <p className="text-sm text-muted-foreground">{job.requirements}</p>
-                    </div>
-                    <div className="text-sm text-muted-foreground">
-                      Posted: {new Date(job.postedDate).toLocaleDateString()}
-                    </div>
+                  <Badge>{job.type}</Badge>
+                </div>
+              </CardHeader>
+              <CardContent>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between text-sm text-muted-foreground">
+                    <span>{job.location}</span>
+                    <span>{job.salary}</span>
                   </div>
-                </CardContent>
-              </Card>
-            ))
-          )}
+                  <p className="text-sm line-clamp-2">{job.description}</p>
+                  <div className="flex justify-end">
+                    <Link to={`/jobs/${job.id}`}>
+                      <Button variant="outline">View Details</Button>
+                    </Link>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </div>
     </>
