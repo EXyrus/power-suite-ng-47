@@ -1,5 +1,6 @@
 import { Metadata } from "@/components/Metadata";
 import { Card, CardContent } from "@/components/ui/card";
+import { Facilitators } from "@/components/Facilitators";
 
 const About = () => {
   return (
@@ -16,10 +17,10 @@ const About = () => {
         }}
       />
       <div className="container mx-auto px-4 py-12">
-        <h1 className="text-4xl font-bold mb-8 text-center">About Us</h1>
+        <h1 className="text-4xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600">About Us</h1>
         
         <div className="max-w-4xl mx-auto space-y-8">
-          <Card>
+          <Card className="backdrop-blur-md bg-white/30 border border-white/20">
             <CardContent className="p-6">
               <div className="prose max-w-none">
                 <p className="text-lg mb-6">
@@ -41,7 +42,7 @@ const About = () => {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="backdrop-blur-md bg-white/30 border border-white/20">
             <CardContent className="p-6">
               <h2 className="text-3xl font-bold mb-6">Our Vision</h2>
               <p className="text-lg mb-6">
@@ -61,6 +62,8 @@ const About = () => {
           </Card>
         </div>
       </div>
+      
+      <Facilitators />
     </>
   );
 };
