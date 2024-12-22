@@ -74,7 +74,6 @@ const ArtStore = () => {
         </div>
 
         <div className="container mx-auto px-4 py-12 relative z-10">
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {artworks.map((artwork, index) => (
               <motion.div
@@ -127,7 +126,6 @@ const ArtStore = () => {
               </motion.div>
             ))}
           </div>
-
         </div>
       </div>
 
@@ -143,3 +141,5 @@ const ArtStore = () => {
     </>
   );
 };
+
+export default ArtStore;
