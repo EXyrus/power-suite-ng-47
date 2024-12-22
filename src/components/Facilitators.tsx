@@ -17,13 +17,13 @@ const facilitators = [
   {
     name: "Oguntimehin Ojo Clement",
     position: "Data Analysis/ Graphic Designer",
-    image: "/dta/ojo.jpeg",
+    image: "/data/ojo.jpeg",
     initials: "OOC"
   },
   {
     name: "Dr. Kenneth Anueyiagu",
     position: "Business Plan/Analysis",
-    image: "/dara/kenneth.jpeg",
+    image: "/data/kenneth.jpeg",
     initials: "KA"
   },
   {
