@@ -13,6 +13,7 @@ const artworks = [
     price: "$799",
     description: "A stunning digital artwork exploring the intersection of technology and nature.",
     medium: "Digital Art",
+    image: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7",
     artistBio: "Elena Rodriguez is a digital artist known for her unique blend of natural elements and technological concepts. With over 10 years of experience, her work has been featured in numerous digital art exhibitions worldwide."
   },
   {
@@ -21,6 +22,7 @@ const artworks = [
     price: "$1,200",
     description: "Contemporary urban landscape capturing the energy of modern city life.",
     medium: "Mixed Media",
+    image: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b",
     artistBio: "Marcus Chen specializes in urban landscapes and contemporary art. His work reflects the dynamic energy of city life, influenced by his background in architecture and fine arts."
   },
   {
@@ -29,6 +31,7 @@ const artworks = [
     price: "$950",
     description: "Abstract visualization of quantum mechanics principles through digital art.",
     medium: "Digital Art",
+    image: "https://images.unsplash.com/photo-1518770660439-4636190af475",
     artistBio: "Sarah Johnson combines her background in quantum physics with digital art to create unique visualizations of scientific concepts. Her work bridges the gap between science and art."
   },
   {
@@ -37,6 +40,7 @@ const artworks = [
     price: "$850",
     description: "Botanical illustrations reimagined through a technological lens.",
     medium: "Digital Print",
+    image: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6",
     artistBio: "David Kim is a pioneering artist in the digital botanical art space. His work seamlessly blends traditional botanical illustration techniques with modern digital tools."
   }
 ];
@@ -70,15 +74,7 @@ const ArtStore = () => {
         </div>
 
         <div className="container mx-auto px-4 py-12 relative z-10">
-          <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="text-4xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600"
-          >
-            Digital Art Gallery
-          </motion.h1>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {artworks.map((artwork, index) => (
               <motion.div
@@ -91,6 +87,16 @@ const ArtStore = () => {
                   <HoverCardTrigger>
                     <Card className="backdrop-blur-md bg-white/30 border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
                       <CardHeader>
+                        <div className="relative w-full h-[300px] mb-4 overflow-hidden rounded-lg">
+                          <div 
+                            className="absolute inset-0 bg-cover bg-center rounded-lg"
+                            style={{ 
+                              backgroundImage: `url(${artwork.image})`,
+                              pointerEvents: 'none',
+                              userSelect: 'none'
+                            }}
+                          />
+                        </div>
                         <CardTitle className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-pink-600">
                           {artwork.title}
                         </CardTitle>
@@ -121,6 +127,7 @@ const ArtStore = () => {
               </motion.div>
             ))}
           </div>
+
         </div>
       </div>
 
@@ -136,5 +143,3 @@ const ArtStore = () => {
     </>
   );
 };
-
-export default ArtStore;

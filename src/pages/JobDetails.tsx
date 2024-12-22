@@ -15,31 +15,15 @@ const JobDetails = () => {
     queryKey: ["job", id],
     queryFn: async () => {
       try {
-        const response = await fetch(
-          `https://api.airtable.com/v0/${AIRTABLE_BASE_ID}/${AIRTABLE_TABLE_NAME}/${id}`,
-          {
-            headers: {
-              Authorization: `Bearer ${AIRTABLE_API_KEY}`,
-            },
-          }
-        );
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch job from Airtable");
-        }
-
-        const data = await response.json();
-        return {
-          id: data.id,
-          ...data.fields,
-        };
-      } catch (error) {
-        console.error("Error fetching from Airtable:", error);
+        // Since we don't have access to Airtable credentials, we'll use demo data
         toast({
           title: "Using Demo Data",
           description: "Could not connect to job database. Showing demo job instead.",
           variant: "default",
         });
+        return demoJobs.find((j) => j.id === id);
+      } catch (error) {
+        console.error("Error fetching job:", error);
         return demoJobs.find((j) => j.id === id);
       }
     },
