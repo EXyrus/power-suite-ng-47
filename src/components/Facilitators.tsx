@@ -3,28 +3,28 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const facilitators = [
   {
-    name: "Dr. Sarah Chen",
-    position: "Lead Technical Instructor",
-    image: "/placeholder.svg",
-    initials: "SC"
+    name: "Aaron Oga",
+    position: "Coordinator",
+    image: "/data/aaron.png",
+    initials: "AO"
   },
   {
-    name: "Michael Rodriguez",
-    position: "Senior Art Director",
-    image: "/placeholder.svg",
-    initials: "MR"
+    name: "Jennifer Otanwa",
+    position: "Customer relationship management/ support",
+    image: "/data/jennifer.jpg",
+    initials: "JO"
   },
   {
-    name: "Dr. Emily Thompson",
-    position: "Digital Arts Specialist",
-    image: "/placeholder.svg",
-    initials: "ET"
+    name: "Oguntimehin Ojo Clement",
+    position: "Data Analysis/ Graphic Designer",
+    image: "/dta/ojo.jpeg",
+    initials: "OOC"
   },
   {
-    name: "James Wilson",
-    position: "Technology Innovation Lead",
-    image: "/placeholder.svg",
-    initials: "JW"
+    name: "Dr. Kenneth Anueyiagu",
+    position: "Business Plan/Analysis",
+    image: "/dara/kenneth.jpeg",
+    initials: "KA"
   },
   {
     name: "Dr. Aisha Patel",
@@ -33,19 +33,19 @@ const facilitators = [
     initials: "AP"
   },
   {
-    name: "Robert Kim",
+    name: "Jacob Dogo",
     position: "Technical Development Director",
-    image: "/placeholder.svg",
-    initials: "RK"
+    image: "/data/jacob.png",
+    initials: "JD"
   },
   {
-    name: "Lisa Johnson",
-    position: "Art Education Coordinator",
-    image: "/placeholder.svg",
-    initials: "LJ"
+    name: "Prince Shammah",
+    position: "Web Designer",
+    image: "/data/prince.jpg",
+    initials: "PS"
   },
   {
-    name: "David Martinez",
+    name: "Hannatu",
     position: "Innovation Strategy Lead",
     image: "/placeholder.svg",
     initials: "DM"
