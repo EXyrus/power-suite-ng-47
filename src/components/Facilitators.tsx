@@ -1,5 +1,4 @@
 import { HoverCard, HoverCardContent, HoverCardTrigger } from "@/components/ui/hover-card";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 const facilitators = [
   {
@@ -65,10 +64,13 @@ export const Facilitators = () => {
               key={facilitator.name}
               className="flex flex-col items-center p-4 rounded-lg backdrop-blur-sm bg-white/30 border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-300"
             >
-              <Avatar className="w-24 h-24 mb-4">
-                <AvatarImage src={facilitator.image} alt={facilitator.name} />
-                <AvatarFallback>{facilitator.initials}</AvatarFallback>
-              </Avatar>
+              <div className="w-full aspect-[3/4] mb-4 rounded-lg overflow-hidden">
+                <img 
+                  src={facilitator.image} 
+                  alt={facilitator.name} 
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <h3 className="text-lg font-semibold text-center">{facilitator.name}</h3>
               <p className="text-sm text-gray-600 text-center">{facilitator.position}</p>
             </div>

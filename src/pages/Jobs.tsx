@@ -15,7 +15,6 @@ const Jobs = () => {
     queryKey: ["jobs"],
     queryFn: async () => {
       try {
-        // Since we don't have access to Airtable credentials, we'll use demo data
         toast({
           title: "Using Demo Data",
           description: "Could not connect to job database. Showing demo jobs instead.",
@@ -88,10 +87,17 @@ const Jobs = () => {
                     <span>{job.salary}</span>
                   </div>
                   <p className="text-sm line-clamp-2">{job.description}</p>
-                  <div className="flex justify-end">
+                  <div className="flex justify-end gap-4">
                     <Link to={`/jobs/${job.id}`}>
                       <Button variant="outline">View Details</Button>
                     </Link>
+                    <a 
+                      href={`mailto:careers@powersuite.tech?subject=Application for ${job.title}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <Button variant="default">Apply Now</Button>
+                    </a>
                   </div>
                 </div>
               </CardContent>

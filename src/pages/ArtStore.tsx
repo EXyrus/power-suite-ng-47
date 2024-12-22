@@ -86,7 +86,7 @@ const ArtStore = () => {
                   <HoverCardTrigger>
                     <Card className="backdrop-blur-md bg-white/30 border border-white/20 shadow-xl hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
                       <CardHeader>
-                        <div className="relative w-full h-[300px] mb-4 overflow-hidden rounded-lg">
+                        <div className="relative w-full aspect-[3/4] mb-4 overflow-hidden rounded-lg">
                           <div 
                             className="absolute inset-0 bg-cover bg-center rounded-lg"
                             style={{ 
